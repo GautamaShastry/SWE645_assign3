@@ -1,7 +1,9 @@
-package com.student.survey.controller;
+package com.survey.momtrimo.controller;
 
-import com.student.survey.model.Survey;
-import com.student.survey.service.SurveyService;
+
+
+import com.survey.momtrimo.model.Survey;
+import com.survey.momtrimo.service.SurveyService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,11 @@ public class SurveyController {
         return surveyService.createSurvey(survey); // get the data from the request body
     }
 
+    @GetMapping("/{id}")
+    public Survey getSurveyById(@PathVariable Long id) {
+        return surveyService.getSurveyById(id);
+    }
+
     @PutMapping("/{id}")
     public Survey updateSurvey(@PathVariable Long id, @Valid @RequestBody Survey survey) {
         return surveyService.updateSurvey(id, survey);
@@ -39,3 +46,4 @@ public class SurveyController {
         surveyService.deleteSurvey(id);
     }
 }
+

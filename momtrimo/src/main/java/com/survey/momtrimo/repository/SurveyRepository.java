@@ -1,8 +1,7 @@
-package com.student.survey.repository;
+package com.survey.momtrimo.repository;
 
+import com.survey.momtrimo.model.Survey;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.student.survey.model.Survey;
 
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
-
 }

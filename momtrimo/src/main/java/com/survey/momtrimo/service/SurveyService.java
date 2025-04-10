@@ -1,10 +1,12 @@
-package com.student.survey.service;
+package com.survey.momtrimo.service;
 
-import com.student.survey.model.Survey;
-import com.student.survey.repository.SurveyRepository;
+
+import com.survey.momtrimo.model.Survey;
+import com.survey.momtrimo.repository.SurveyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SurveyService {
@@ -20,6 +22,15 @@ public class SurveyService {
 
     public Survey createSurvey(Survey survey) {
         return surveyRepository.save(survey);
+    }
+
+    public Survey getSurveyById(Long id) {
+        Optional<Survey> survey = surveyRepository.findById(id);
+        if(survey.isPresent()) {
+            return survey.get();
+        } else {
+            return null;
+        }
     }
 
     public Survey updateSurvey(Long id, Survey surveyDetails) {
@@ -47,3 +58,4 @@ public class SurveyService {
         surveyRepository.delete(survey);
     }
 }
+

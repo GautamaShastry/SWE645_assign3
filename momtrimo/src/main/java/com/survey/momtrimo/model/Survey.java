@@ -1,5 +1,4 @@
-package com.student.survey.model;
-
+package com.survey.momtrimo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -15,52 +14,53 @@ public class Survey {
     private Long id;
 
     @NotBlank(message = "First Name is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "first_name")
     private String firstName;
 
     @NotBlank(message = "Last Name is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "last_name")
     private String lastName;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "email")
     private String email;
 
     @NotBlank(message = "Street address is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "street_address")
     private String streetAddress;
 
     @NotBlank(message = "City is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "city")
     private String city;
 
     @NotBlank(message = "State is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "state")
     private String state;
 
     @NotBlank(message = "Zip code is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "zip_code")
     private String zipCode;
 
     @NotBlank(message = "Telephone number is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "telephone_number")
     private String telephoneNumber;
 
     @NotNull(message = "Survey date is required")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "survey_date")
+    @Temporal(TemporalType.DATE)
     private LocalDate surveyDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
+    @Column(nullable = true, name = "liked_most")
     private LikedMost likedMost;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
+    @Column(nullable = true, name = "interest_source")
     private InterestSource interestSource;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
+    @Column(nullable = true, name = "recommendation")
     private Recommendation recommendation;
 
     public enum LikedMost {

@@ -8,11 +8,11 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.student</groupId>
-	<artifactId>survey</artifactId>
+	<groupId>com.survey</groupId>
+	<artifactId>momtrimo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>survey</name>
-	<description>Student Survey page </description>
+	<name>momtrimo</name>
+	<description>Student Survey Page</description>
 	<url/>
 	<licenses>
 		<license/>

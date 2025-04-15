@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: "survey-backend"
+  cluster:
+    server: "https://ec2-44-218-143-73.compute-1.amazonaws.com/k8s/clusters/c-m-cds8rdpw"
+    certificate-authority-data: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2akNDQ\
+      VdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKY\
+      kdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNV\
+      GMwTkRNegpNVGt3T1RBZUZ3MHlOVEEwTVRFd01ETTRNamxhRncwek5UQTBNRGt3TURNNE1qbGFNR\
+      Vl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV\
+      1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56UTBNek14T1RBNU1Ga3dFd1lIS29aSXpqMENBU\
+      VlJS29aSXpqMERBUWNEUWdBRVdvVElWNlNEa1VBQQpHU1FRdXg0NWVHVmNaRlNNKzBmVUhGYUhWZ\
+      Hdyc1JnMEpweGxCNFdNRDJSeFZSTjRTMlZiQlRtd0lEaWZrbFR3ClR3Tzk1WWMva2FOQ01FQXdEZ\
+      1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGS\
+      DRIejhpd2dnT2VBQkFSd1JMY0ZZak1MOG9ITUFvR0NDcUdTTTQ5QkFNQ0Ewa0FNRVlDSVFDVgpaS\
+      GtmZWNtZjhvMUlXYklFMFBjZ1pIeGY5TGNkQW0yQVhDVzBWY2ZqSFFJaEFKTXplUlF5U0daRTVWS\
+      kcwbW8xClpNWUk4WWM1MHE5OWZhMlhKU0pqTldjagotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
+
+users:
+- name: "survey-backend"
+  user:
+    token: "kubeconfig-user-x2bddwt9z2:fg5l989zrskfhxq25fnzzxw9jwp5pr96mp5bvjrdqkswkpj7jjwnnt"
+
+
+contexts:
+- name: "survey-backend"
+  context:
+    user: "survey-backend"
+    cluster: "survey-backend"
+
+current-context: "survey-backend"

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-hw3
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: survey
+  template:
+    metadata:
+      labels:
+        app: survey
+    spec:
+      containers:
+        - name: survey
+          image: gautam26/swe645:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: datasource_url
+              value: jdbc:mysql://database-1.cjyikqgki6ok.us-east-1.rds.amazonaws.com/survey_db
+            - name: datasource_username
+              value: admin
+            - name: dasource_password
+              value: Batmansavesgotham01

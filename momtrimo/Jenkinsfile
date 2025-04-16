@@ -4,46 +4,53 @@
 
 pipeline {
     agent any
+
     environment {
-        DOCKERHUB_PASS = credentials('docker') // DockerHub credentials
-        BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC")) // Use a timestamp for image tagging
+        DOCKERHUB_PASS = credentials('docker-pass')
+        BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
     }
+
     stages {
-        stage("Building the Spring Boot Application Image") {
+        stage("Build & Package with Maven") {
             steps {
                 script {
-
-					// Fetch the current SCM and print the timestamp
+                    // Clone the repo
                     checkout scm
-                    echo "Build timestamp: ${BUILD_TIMESTAMP}"
 
-                    // Login to DockerHub
-                    sh '''
-                        echo "${DOCKERHUB_PASS_PSW}" | docker login -u gautam26 --password-stdin
-                    '''
-
-                    // Build the application using Maven
-                    sh 'mvn clean package'
-
-                    // Build the Docker image
-                    sh "docker build -t gautam26/swe645:1.0-${BUILD_TIMESTAMP} ."
+                    // Move into momtrimo folder then build
+                    dir('momtrimo') {
+                        sh 'mvn clean package'
+                    }
                 }
             }
         }
-        stage("Pushing Image to DockerHub") {
+
+        stage("Build Docker Image") {
             steps {
                 script {
-                    // Push the image to DockerHub
+                    // Docker login
+                    sh '''
+                      echo "$DOCKERHUB_PASS_PSW" | docker login -u gautam26 --password-stdin
+                    '''
+                    // Build inside the momtrimo folder
+                    dir('momtrimo') {
+                        sh "docker build -t gautam26/swe645:1.0-${BUILD_TIMESTAMP} ."
+                    }
+                }
+            }
+        }
+
+        stage("Push Image to DockerHub") {
+            steps {
+                script {
                     sh "docker push gautam26/swe645:1.0-${BUILD_TIMESTAMP}"
                 }
             }
         }
+
         stage("Deploy to Kubernetes") {
             steps {
-                // Inject kubeconfig from Jenkins credentials store
                 withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
-
-                    // Update the Kubernetes deployment with the new image
                     sh "kubectl set image deployment/deployment-hw3 survey=gautam26/swe645:1.0-${BUILD_TIMESTAMP} -n default"
                 }
             }

@@ -1,3 +1,5 @@
+// main application, where the server runs(on port 8080)
+
 package com.survey.momtrimo;
 
 import org.springframework.boot.SpringApplication;

@@ -1,3 +1,5 @@
+// service layer: define the business logic (CRUD operations)
+
 package com.survey.momtrimo.service;
 
 
@@ -20,10 +22,12 @@ public class SurveyService {
         return surveyRepository.findAll();
     }
 
+    // create a survey page
     public Survey createSurvey(Survey survey) {
         return surveyRepository.save(survey);
     }
 
+    // get a survey detail through ID
     public Survey getSurveyById(Long id) {
         Optional<Survey> survey = surveyRepository.findById(id);
         if(survey.isPresent()) {
@@ -33,6 +37,7 @@ public class SurveyService {
         }
     }
 
+    // update the survey page
     public Survey updateSurvey(Long id, Survey surveyDetails) {
         Survey survey = surveyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Survey not found with id: " + id));
@@ -52,6 +57,7 @@ public class SurveyService {
         return surveyRepository.save(survey);
     }
 
+    // delete a survey
     public void deleteSurvey(Long id) {
         Survey survey = surveyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Survey not found with id: " + id));

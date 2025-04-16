@@ -1,3 +1,5 @@
+// repository layer: connection to the database
+
 package com.survey.momtrimo.repository;
 
 import com.survey.momtrimo.model.Survey;

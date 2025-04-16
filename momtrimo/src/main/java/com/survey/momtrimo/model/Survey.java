@@ -1,3 +1,5 @@
+// define the Survey entity, surveys is the table name in the MySQL database
+
 package com.survey.momtrimo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
